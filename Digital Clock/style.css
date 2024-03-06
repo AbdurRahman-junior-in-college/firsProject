@@ -1,0 +1,302 @@
+
+
+:root{
+    --font: 'sans-serif';
+    --bg:#2f363e;
+    --c:#fff;
+    --circle-s:#eb0b56;
+    --circle-m:#34b638;
+    --circle-h:#fde721;
+
+    --brd:rgba(0 0 0 .5);
+    --bx: 5px 5px 15px rgba(0, 0, 0, 0.25),
+     5px 15px 15px rgba(0, 0, 0, 0.05),
+    inset 5px 5px 15px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.5),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.94);
+
+    --bx02:5px 5px 10px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 20px rgba(23, 19, 19, 0.5),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.35);
+
+    --bx03: 5px 5px 7px rgba(69, 86, 103, .329),
+    inset 2px 2px 5px rgba(3, 3, 3, 0.9),
+    inset -3px -3px 5px rgba(81, 101, 121, 0.35);
+} 
+
+body.dark{
+   
+    --bg:#e8eaec;
+    --c:#333;
+    --circle-s:#02b7ff;
+    --circle-m:#ff6100;
+    --circle-h:#4949e7;
+
+    --brd:none;
+    --bx: 7px 7px 15px rgba(69, 86, 103, 0.329),
+     -8px -8px 15px rgba(81, 101, 121, 0.04),
+    inset -5px -4px 13px 0px rgba(81, 101, 121, 0.04),
+    inset 6px 7px 12px 0px rgba(255, 255, 255, 0.5);
+
+    --bx02:5px 5px 10px rgba(69, 86, 103, 0.329),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.5),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.35);
+
+    --bx03: 5px 5px 7px rgba(69, 86, 103, .329),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.9),
+    inset -3px -3px 5px rgba(81, 101, 121, 0.04);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--bg);
+    overflow: hidden;
+}
+
+.dark-light{
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    box-shadow:var(--bx03);
+    border-radius: 50%;
+}
+
+.dark-light i{
+    position: absolute;
+    color: var(--c);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s ease;
+
+}
+
+.dark-light i.sun{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dark-light.active i.sun{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dark-light.active i.moon{
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+section{
+    position: relative;
+    background-color: var(--bg);
+    border-radius: 20px;
+    border-top-left-radius: 255px;
+    border-top-right-radius: 255px;
+    box-shadow: var(--bx);
+    /* width: 450px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#time{
+    position: relative;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background-color: var(--bg);
+    box-shadow: var(--bx);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#time .circle{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time .circle svg{
+    position: relative;
+    transform: rotate(270deg);
+}
+
+#time .circle:nth-child(1) svg{
+    width: 250px;
+    height: 250px;
+}
+
+#time .circle:nth-child(2) svg{
+    width: 210px;
+    height: 210px;
+}
+#time .circle:nth-child(3) svg{
+    width: 170px;
+    height: 170px;
+}
+
+#time .circle svg circle{
+    width: 100%;
+    height: 100%;
+    fill:transparent;
+    stroke-width: 2;
+    transform: translate(5px, 5px);
+}
+
+#time .circle:nth-child(1) svg circle{
+    stroke-dasharray: 760;
+    stroke-dashoffset: 760;
+    stroke: var(--circle-s);
+}
+
+#time .circle:nth-child(2) svg circle{
+    stroke-dasharray: 630;
+    stroke-dashoffset: 630;
+    stroke: var(--circle-m);
+}
+
+#time .circle:nth-child(3) svg circle{
+    stroke-dasharray: 510;
+    stroke-dashoffset: 510;
+    stroke: var(--circle-h);
+}
+
+#time .circle .dots{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#time .circle:nth-child(1) .dots,
+#time .circle:nth-child(2) .dots,
+#time .circle:nth-child(3) .dots{
+    content: "";
+    position: absolute;
+    top: -3px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--circle-s);
+    box-shadow:
+    0 0 20px var(--circle-s),
+    0 0 40px var(--circle-s),
+    0 0 60px var(--circle-s),
+    0 0 80px var(--circle-s);
+}
+
+#time .circle:nth-child(2) .dots{
+    background-color: var(--circle-m);
+    box-shadow:
+    0 0 40px var(--circle-m),
+    0 0 20px var(--circle-m),
+    0 0 60px var(--circle-m),
+    0 0 80px var(--circle-m);
+}
+
+#time .circle:nth-child(3) .dots{
+    background-color: var(--circle-h);
+    box-shadow:
+    0 0 40px var(--circle-h),
+    0 0 20px var(--circle-h),
+    0 0 60px var(--circle-h),
+    0 0 80px var(--circle-h);
+}
+
+.clk{
+    position: relative;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clk span{
+    position: absolute;
+    inset: 30px;
+    color: #777777;
+    text-align: center;
+    transform: rotate(calc(30deg * var(--i)));
+}
+
+.clk span b{
+    font-size: 2rem;
+    font-weight: 600;
+    display: inline-block;
+    transform: rotate(calc(-30deg * var(--i)));
+
+}
+
+.timeBx{
+    margin-bottom: 40px;
+    display: flex;
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 40px;
+    box-shadow: var(--bx02);
+    gap: 2rem;
+}
+
+.timeBx #hours::after,
+.timeBx #minutes::after{
+    content: '';
+    position: absolute;
+}
+
+.timeBx #hours{
+    color: var(--circle-h);
+    text-shadow: 0 0 10px var(--circle-h),
+    0 0 20px var(--circle-h);
+}
+
+.timeBx #minutes{
+    color: var(--circle-m);
+    text-shadow: 0 0 10px var(--circle-m),
+    0 0 20px var(--circle-m);
+}
+
+.timeBx #seconds{
+    color: var(--circle-s);
+    text-shadow: 0 0 10px var(--circle-h),
+    0 0 20px var(--circle-s);
+    
+}
+
+.ap{
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--c);
+    text-shadow: 0 0 10px var(--c),
+    0 0 20px var(--c); ;
+}
